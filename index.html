@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>For Maithali ❤️</title>
+
   <style>
     :root{
       --pink:#ff4d8d;
@@ -20,6 +21,40 @@
       overflow:hidden;
       background: radial-gradient(circle at top, #ffb3d1 0%, #ff4d8d 40%, #1a0010 100%);
       color:#fff;
+    }
+
+    /* INTRO SCREEN */
+    .intro{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: radial-gradient(circle at top, #ffb3d1 0%, #ff4d8d 40%, #1a0010 100%);
+      z-index:200;
+      text-align:center;
+      padding:24px;
+    }
+
+    .intro-text{
+      max-width:720px;
+      font-size:22px;
+      line-height:1.45;
+      font-weight:700;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0; transform:translateY(10px);}
+      to{opacity:1; transform:translateY(0);}
+    }
+
+    .fade-out{
+      animation: fadeOut 1s ease forwards;
+    }
+
+    @keyframes fadeOut{
+      to{opacity:0;}
     }
 
     /* floating hearts */
@@ -58,6 +93,7 @@
       box-shadow:0 20px 60px rgba(0,0,0,0.35);
       position:relative;
       z-index:10;
+      display:none;
     }
 
     .badge{
@@ -67,25 +103,20 @@
       background:rgba(255,255,255,0.16);
       border:1px solid rgba(255,255,255,0.25);
       font-size:13px;
-      letter-spacing:0.4px;
       margin-bottom:14px;
     }
 
     h1{
       font-size:28px;
-      line-height:1.15;
       margin-bottom:10px;
     }
     p{
       font-size:16px;
-      opacity:0.95;
       margin-bottom:20px;
     }
 
     .name{
       font-weight:800;
-      color:#fff;
-      text-shadow:0 10px 40px rgba(0,0,0,0.35);
     }
 
     .question{
@@ -110,16 +141,12 @@
       font-size:16px;
       font-weight:700;
       cursor:pointer;
-      transition: transform 0.12s ease, box-shadow 0.12s ease;
-      user-select:none;
     }
 
     #yesBtn{
       background:#fff;
       color:#ff2e7a;
-      box-shadow:0 12px 30px rgba(0,0,0,0.25);
     }
-    #yesBtn:hover{transform:scale(1.05);}
 
     #noBtn{
       background:rgba(0,0,0,0.35);
@@ -127,7 +154,6 @@
       border:1px solid rgba(255,255,255,0.25);
       position:absolute;
       right:20px;
-      box-shadow:0 12px 30px rgba(0,0,0,0.2);
     }
 
     .footer{
@@ -145,32 +171,20 @@
       justify-content:center;
       background:rgba(0,0,0,0.55);
       z-index:99;
-      padding:20px;
     }
     .popup-card{
-      width:min(520px, 96vw);
       background:#fff;
       color:#111;
       border-radius:26px;
       padding:26px 22px;
       text-align:center;
-      box-shadow:0 30px 80px rgba(0,0,0,0.35);
-      animation: pop 0.35s ease;
     }
-    @keyframes pop{
-      from{transform:scale(0.9); opacity:0;}
-      to{transform:scale(1); opacity:1;}
-    }
+
     .popup-card h2{
       color:#ff2e7a;
-      font-size:26px;
       margin-bottom:8px;
     }
-    .popup-card p{
-      color:#222;
-      margin-bottom:16px;
-      font-size:16px;
-    }
+
     .closeBtn{
       background:#ff2e7a;
       color:#fff;
@@ -179,119 +193,88 @@
       font-weight:800;
       width:100%;
     }
-
-    .spark{
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      overflow:hidden;
-      border-radius:26px;
-    }
   </style>
 </head>
+
 <body>
 
-  <!-- hearts -->
-  <script>
-    // create floating hearts
-    for(let i=0;i<22;i++){
-      const h=document.createElement("div");
-      h.className="heart";
-      h.style.left=Math.random()*100+"vw";
-      h.style.animationDelay=(Math.random()*6)+"s";
-      h.style.opacity=Math.random()*0.7+0.2;
-      h.style.transform=`rotate(45deg) scale(${Math.random()*1.2+0.5})`;
-      document.body.appendChild(h);
-    }
-  </script>
+<!-- INTRO -->
+<div class="intro" id="introScreen">
+  <div class="intro-text">
+    😊 Please smile…<br><br>
+    because in the next <b>one minute</b>,<br>
+    you’ll experience something<br>
+    you’ll <span style="color:#fff;">never forget</span> in your life 💖✨
+  </div>
+</div>
 
-  <div class="card" id="mainCard">
-    <div class="badge">✨ Special Message for <span class="name">Maithali</span></div>
+<!-- HEARTS -->
+<script>
+  for(let i=0;i<22;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDelay=(Math.random()*6)+"s";
+    document.body.appendChild(h);
+  }
+</script>
 
-    <h1>Hey <span class="name">Maithali</span> ❤️</h1>
-    <p>
-      I just want to ask you something… (please don’t say no 😭)
-    </p>
+<!-- MAIN CARD -->
+<div class="card" id="mainCard">
+  <div class="badge">✨ Special Message for <span class="name">Maithali</span></div>
 
-    <div class="question">
-      Will you be my <b>Best Friend</b> forever? 🤝💖
-    </div>
+  <h1>Hey <span class="name">Maithali</span> ❤️</h1>
+  <p>
+    I’m <span class="name">Jayraj</span> 😄<br>
+    I just want to ask you something…
+  </p>
 
-    <div class="btn-wrap" id="btnArea">
-      <button id="yesBtn">YES 😍</button>
-      <button id="noBtn">NO 🙃</button>
-    </div>
-
-    <div class="footer">Made with ❤️ by Jayraj</div>
+  <div class="question">
+    Will you be my <b>Best Friend</b> forever? 🤝💖
   </div>
 
-  <!-- popup -->
-  <div class="popup" id="popup">
-    <div class="popup-card">
-      <h2>YAYYYYY 😭💖</h2>
-      <p>
-        Maithali, you just made my day 🥹<br>
-        From today… you’re officially my <b>Best Friend Forever</b> 🤝✨
-      </p>
-      <p style="font-weight:800;">– Jayraj ❤️</p>
-      <button class="closeBtn" id="closeBtn">Aww Okay 😭💗</button>
-    </div>
+  <div class="btn-wrap" id="btnArea">
+    <button id="yesBtn">YES 😍</button>
+    <button id="noBtn">NO 🙃</button>
   </div>
 
-  <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const btnArea = document.getElementById("btnArea");
-    const popup = document.getElementById("popup");
-    const closeBtn = document.getElementById("closeBtn");
+  <div class="footer">Made with ❤️ by Jayraj</div>
+</div>
 
-    function moveNoButton(){
-      const areaRect = btnArea.getBoundingClientRect();
-      const btnRect = noBtn.getBoundingClientRect();
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-card">
+    <h2>YAYYYYY 😭💖</h2>
+    <p>You just made my day 🥹</p>
+    <button class="closeBtn" id="closeBtn">Aww Okay 💗</button>
+  </div>
+</div>
 
-      const padding = 10;
-      const maxX = areaRect.width - btnRect.width - padding;
-      const maxY = areaRect.height - btnRect.height - padding;
+<script>
+  const intro = document.getElementById("introScreen");
+  const mainCard = document.getElementById("mainCard");
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const popup = document.getElementById("popup");
+  const closeBtn = document.getElementById("closeBtn");
 
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
+  setTimeout(()=>{
+    intro.classList.add("fade-out");
+    setTimeout(()=>{
+      intro.style.display="none";
+      mainCard.style.display="block";
+    },1000);
+  },7000);
 
-      noBtn.style.left = x + "px";
-      noBtn.style.top  = y + "px";
-    }
+  function moveNo(){
+    noBtn.style.left=Math.random()*60+"%";
+    noBtn.style.top=Math.random()*30+"px";
+  }
+  noBtn.addEventListener("mouseenter",moveNo);
 
-    // On hover/touch, NO button escapes
-    noBtn.addEventListener("mouseenter", moveNoButton);
-    noBtn.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNoButton(); });
-
-    // YES click opens popup
-    yesBtn.addEventListener("click", ()=>{
-      popup.style.display="flex";
-      blastHearts();
-    });
-
-    closeBtn.addEventListener("click", ()=>{
-      popup.style.display="none";
-    });
-
-    function blastHearts(){
-      for(let i=0;i<24;i++){
-        const h=document.createElement("div");
-        h.className="heart";
-        h.style.left=(50 + (Math.random()*40-20))+"vw";
-        h.style.animationDuration=(Math.random()*2+3)+"s";
-        h.style.opacity=1;
-        h.style.transform=`rotate(45deg) scale(${Math.random()*1.2+0.6})`;
-        document.body.appendChild(h);
-        setTimeout(()=>h.remove(), 5000);
-      }
-    }
-
-    // set initial NO button position nicely
-    noBtn.style.left = "55%";
-    noBtn.style.top = "8px";
-  </script>
+  yesBtn.addEventListener("click",()=>popup.style.display="flex");
+  closeBtn.addEventListener("click",()=>popup.style.display="none");
+</script>
 
 </body>
 </html>
-  
