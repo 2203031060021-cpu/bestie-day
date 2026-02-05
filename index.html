@@ -13,39 +13,76 @@
   font-family:'Segoe UI', sans-serif;
 }
 
+/* Animated background */
 body{
   height:100vh;
-  background: linear-gradient(135deg,#1f1c2c,#928dab);
+  overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
-  overflow:hidden;
+  background: linear-gradient(120deg,#1d2671,#c33764);
+  animation: bgMove 10s ease infinite;
 }
 
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* floating lights */
+.light{
+  position:absolute;
+  width:180px;
+  height:180px;
+  background:rgba(255,255,255,0.12);
+  border-radius:50%;
+  filter:blur(40px);
+  animation: float 12s infinite alternate;
+}
+
+.light:nth-child(1){top:10%;left:15%;}
+.light:nth-child(2){bottom:20%;right:10%;animation-delay:2s;}
+.light:nth-child(3){top:60%;left:60%;animation-delay:4s;}
+
+@keyframes float{
+  from{transform:translateY(0px);}
+  to{transform:translateY(-80px);}
+}
+
+/* card */
 .container{
   width:90%;
   max-width:420px;
   height:540px;
-  background:rgba(255,255,255,0.15);
+  background:rgba(255,255,255,0.16);
   backdrop-filter:blur(18px);
   border-radius:28px;
-  box-shadow:0 25px 60px rgba(0,0,0,0.4);
+  box-shadow:0 30px 70px rgba(0,0,0,0.45);
   position:relative;
   color:white;
+  z-index:5;
 }
 
+/* slides */
 .slide{
   position:absolute;
   inset:0;
-  padding:34px;
+  padding:36px;
   display:none;
   flex-direction:column;
   justify-content:center;
   text-align:center;
+  animation: fadeIn 0.6s ease;
 }
 
 .slide.active{
   display:flex;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
 h1{
@@ -59,9 +96,10 @@ p{
   opacity:0.95;
 }
 
+/* buttons */
 button{
   margin-top:32px;
-  padding:14px 24px;
+  padding:14px 26px;
   border:none;
   border-radius:18px;
   font-size:16px;
@@ -69,9 +107,9 @@ button{
   cursor:pointer;
 }
 
-.next, .yes{
+.next,.yes{
   background:white;
-  color:#5a4b7c;
+  color:#6a2c70;
 }
 
 .no{
@@ -86,36 +124,19 @@ button{
   width:100%;
   text-align:center;
   font-size:12px;
-  opacity:0.7;
-}
-
-/* Music button */
-.music-btn{
-  position:absolute;
-  top:16px;
-  right:16px;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:rgba(0,0,0,0.35);
-  color:white;
-  border:none;
-  font-size:18px;
-  cursor:pointer;
+  opacity:0.75;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 Background Music -->
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<!-- background lights -->
+<div class="light"></div>
+<div class="light"></div>
+<div class="light"></div>
 
 <div class="container">
-
-  <button class="music-btn" onclick="toggleMusic()">🎵</button>
 
   <!-- Slide 1 -->
   <div class="slide active">
@@ -166,23 +187,16 @@ button{
 let current = 0;
 const slides = document.querySelectorAll('.slide');
 const noBtn = document.getElementById('noBtn');
-const music = document.getElementById('bgMusic');
-let musicStarted = false;
 
 function nextSlide(){
   slides[current].classList.remove('active');
   current++;
   slides[current].classList.add('active');
-
-  if(!musicStarted){
-    music.play();
-    musicStarted = true;
-  }
 }
 
 function yesClicked(){
   alert(
-    "This truly means a lot to me 🤍\n\n" +
+    "aithali, you’re officially my Best Friend\n\n" +
     "I’m really glad we met, Maithali.\n" +
     "Thank you for being you.\n\n" +
     "– Jayraj"
@@ -194,14 +208,6 @@ noBtn.addEventListener("mouseover", ()=>{
   const y = Math.random()*220;
   noBtn.style.transform = `translate(${x}px,${y}px)`;
 });
-
-function toggleMusic(){
-  if(music.paused){
-    music.play();
-  }else{
-    music.pause();
-  }
-}
 </script>
 
 </body>
